@@ -11,7 +11,7 @@ import { ordersAPI } from '../services/api';
 import { useAuth } from '../context/AuthContext';
 import { toast } from 'react-toastify';
 
-const RAZORPAY_KEY = import.meta.env.VITE_RAZORPAY_KEY_ID || "rzp_test_SNYh5IBLPCqXUW";
+const RAZORPAY_KEY = import.meta.env.VITE_RAZORPAY_KEY_ID;
 
 const STATUS_STEPS = [
     { key: 'placed', label: 'Order Placed', icon: ClipboardList, desc: 'Your order has been confirmed' },

@@ -10,7 +10,7 @@ import { ordersAPI, authAPI } from '../services/api';
 import { useAuth } from '../context/AuthContext';
 
 // ── Real Razorpay Key from .env ───────────────────────────────────────────────
-const RAZORPAY_KEY = import.meta.env.VITE_RAZORPAY_KEY_ID || "rzp_test_SNYh5IBLPCqXUW";
+const RAZORPAY_KEY = import.meta.env.VITE_RAZORPAY_KEY_ID;
 
 
 const PAYMENT_METHODS = [
@@ -47,7 +47,7 @@ const Checkout = ({ cart = [], clearCart, couponData = null }) => {
     const primeDiscount = isPrime ? Math.round(subtotal * 0.2) : 0; // 20% Elite Discount
 
     const delivery = subtotal > 499 ? 0 : 49;
-    const finalTotal = subtotal-couponDiscount-primeDiscount + delivery;
+    const finalTotal = subtotal - couponDiscount - primeDiscount + delivery;
     const formatINR = (n) => `₹${Number(n).toLocaleString('en-IN')} `;
 
     useEffect(() => {
@@ -214,7 +214,7 @@ const Checkout = ({ cart = [], clearCart, couponData = null }) => {
                                 </div>
                                 <span className="hidden md:block">{s}</span>
                             </div>
-                            {i < STEPS.length-1 && <ChevronRight size={14} className="text-gray-200" />}
+                            {i < STEPS.length - 1 && <ChevronRight size={14} className="text-gray-200" />}
                         </React.Fragment>
                     ))}
                 </div>

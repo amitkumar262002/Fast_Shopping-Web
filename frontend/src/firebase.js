@@ -18,13 +18,13 @@ import {
 } from "firebase/auth";
 
 const firebaseConfig = {
-    apiKey: import.meta.env.VITE_FIREBASE_API_KEY || "AIzaSyDkr6wYBUm8uRJjmukMSzwOPBivdOS2314",
-    authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN || "fast-shopping-76cff.firebaseapp.com",
-    databaseURL: import.meta.env.VITE_FIREBASE_DATABASE_URL || "https://fast-shopping-76cff-default-rtdb.firebaseio.com",
-    projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID || "fast-shopping-76cff",
-    storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET || "fast-shopping-76cff.firebasestorage.app",
-    messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID || "712353400797",
-    appId: import.meta.env.VITE_FIREBASE_APP_ID || "1:712353400797:web:03b6ebab166a3ceede1834"
+    apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
+    authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN,
+    databaseURL: import.meta.env.VITE_FIREBASE_DATABASE_URL,
+    projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID,
+    storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET,
+    messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID,
+    appId: import.meta.env.VITE_FIREBASE_APP_ID
 };
 
 const app = initializeApp(firebaseConfig);

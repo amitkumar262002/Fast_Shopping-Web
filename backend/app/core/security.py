@@ -12,7 +12,7 @@ from app.database import get_db
 from app.models import user as user_models
 import hashlib, os, secrets
 
-SECRET_KEY = os.getenv("SECRET_KEY", "fastshopping-enterprise-secret-2026-xK9mL2pQ8nR3vT")
+SECRET_KEY = os.getenv("SECRET_KEY", "fallback-secret-key-change-in-production")
 ALGORITHM = "HS256"
 ACCESS_TOKEN_EXPIRE_MINUTES = 60 * 24 * 7  # 7 days
 

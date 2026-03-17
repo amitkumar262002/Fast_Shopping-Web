@@ -13,8 +13,8 @@ import razorpay, os, hmac, hashlib
 from dotenv import load_dotenv
 
 load_dotenv()
-RAZORPAY_KEY_ID = os.getenv("RAZORPAY_KEY_ID", "rzp_test_SNYh5IBLPCqXUW")
-RAZORPAY_KEY_SECRET = os.getenv("RAZORPAY_KEY_SECRET", "tzinQf0lshqR1HwWWQGNRgjj")
+RAZORPAY_KEY_ID = os.getenv("RAZORPAY_KEY_ID")
+RAZORPAY_KEY_SECRET = os.getenv("RAZORPAY_KEY_SECRET")
 
 try:
     razorpay_client = razorpay.Client(auth=(RAZORPAY_KEY_ID, RAZORPAY_KEY_SECRET))
