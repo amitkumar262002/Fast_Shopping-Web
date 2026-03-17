@@ -4,7 +4,7 @@ import {
     BarChart3, Package, Users, Zap, TrendingUp, ShieldCheck,
     Plus, Search, Filter, CheckCircle2, Clock, XCircle, MoreVertical,
     Edit3, Trash2, Upload, X, Tag, Star, ArrowUpRight, Bell,
-    LayoutDashboard, ShoppingBag, Settings, LogOut, Globe, ChevronDown
+    LayoutDashboard, ShoppingBag, Settings, LogOut, Globe, ChevronDown, Download
 } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { productsAPI, ordersAPI, adminAPI, couponsAPI } from '../services/api';
@@ -27,6 +27,30 @@ const timeAgo = (date) => {
     } catch (e) {
         return 'Unknown';
     }
+};
+
+const exportToCSV = (dataList, filename) => {
+    if (!dataList || !dataList.length) {
+        toast.warning("No data to export");
+        return;
+    }
+    const validKeys = Object.keys(dataList[0]).filter(k => typeof dataList[0][k] !== 'object' && !Array.isArray(dataList[0][k]));
+    let csvContent = "data:text/csv;charset=utf-8," + validKeys.join(",") + "\r\n";
+    dataList.forEach(item => {
+        let row = validKeys.map(k => {
+            let val = item[k] === null || item[k] === undefined ? "" : item[k].toString();
+            return `"${val.replace(/"/g, '""')}"`;
+        });
+        csvContent += row.join(",") + "\r\n";
+    });
+    const encodedUri = encodeURI(csvContent);
+    const link = document.createElement("a");
+    link.setAttribute("href", encodedUri);
+    link.setAttribute("download", `${filename}.csv`);
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    toast.success(`${filename}.csv Downloaded via Secure Channel`);
 };
 
 const ADMIN_MODULES = [
@@ -432,9 +456,14 @@ const Admin = () => {
                                         <h2 className="text-3xl font-black italic tracking-tighter uppercase text-gray-900">Product Inventory</h2>
                                         <p className="text-[10px] font-bold text-gray-400 uppercase tracking-widest mt-1">{products.length} SKUs Indexed in Global Catalog</p>
                                     </div>
-                                    <button onClick={() => setShowAddProduct(true)} className="flex items-center gap-3 h-14 px-8 bg-blue-600 text-white rounded-2xl font-black text-xs uppercase tracking-widest shadow-lg hover:bg-gray-900 transition-all active:scale-95">
-                                        <Plus size={18} /> Add Product
-                                    </button>
+                                    <div className="flex gap-4">
+                                        <button onClick={() => exportToCSV(products, 'fast_shopping_inventory')} className="flex items-center gap-2 h-14 px-6 bg-white border border-gray-100 text-gray-600 rounded-2xl font-black text-xs uppercase tracking-widest shadow-sm hover:border-blue-300 hover:text-blue-600 transition-all">
+                                            <Download size={18} /> Export CSV
+                                        </button>
+                                        <button onClick={() => setShowAddProduct(true)} className="flex items-center gap-3 h-14 px-8 bg-blue-600 text-white rounded-2xl font-black text-xs uppercase tracking-widest shadow-lg hover:bg-gray-900 transition-all active:scale-95">
+                                            <Plus size={18} /> Add Product
+                                        </button>
+                                    </div>
                                 </div>
 
                                 <div className="bg-white rounded-[32px] shadow-sm border border-gray-100 overflow-hidden">
@@ -538,7 +567,12 @@ const Admin = () => {
                         {/* === ORDERS MODULE === */}
                         {activeModule === 'orders' && (
                             <motion.div key="orders" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }} className="space-y-8">
-                                <h2 className="text-3xl font-black italic tracking-tighter uppercase text-gray-900">Order Management</h2>
+                                <div className="flex justify-between items-center">
+                                    <h2 className="text-3xl font-black italic tracking-tighter uppercase text-gray-900">Order Management</h2>
+                                    <button onClick={() => exportToCSV(orders, 'fast_shopping_orders_export')} className="flex items-center gap-2 h-12 px-6 bg-white border border-gray-100 text-gray-600 rounded-2xl font-black text-xs uppercase tracking-widest shadow-sm hover:border-blue-300 hover:text-blue-600 transition-all">
+                                        <Download size={16} /> Export Orders CSV
+                                    </button>
+                                </div>
                                 <div className="bg-white rounded-[32px] shadow-sm border border-gray-100 overflow-hidden">
                                     <table className="w-full">
                                         <thead className="bg-slate-50">
@@ -588,7 +622,12 @@ const Admin = () => {
                         {/* === USERS MODULE === */}
                         {activeModule === 'users' && (
                             <motion.div key="users" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }} className="space-y-8">
-                                <h2 className="text-3xl font-black italic tracking-tighter uppercase text-gray-900">User Registry</h2>
+                                <div className="flex justify-between items-center">
+                                    <h2 className="text-3xl font-black italic tracking-tighter uppercase text-gray-900">User Registry</h2>
+                                    <button onClick={() => exportToCSV(users, 'fast_shopping_users')} className="flex items-center gap-2 h-12 px-6 bg-white border border-gray-100 text-gray-600 rounded-2xl font-black text-xs uppercase tracking-widest shadow-sm hover:border-blue-300 hover:text-blue-600 transition-all">
+                                        <Download size={16} /> Export Access Logs
+                                    </button>
+                                </div>
                                 <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-5 mb-6">
                                     {[['Total Users', '12,412'], ['Premium Members', '2,812'], ['New Today', '48'], ['Active Now', '234']].map(([label, val], i) => (
                                         <div key={i} className="bg-white rounded-[24px] p-6 border border-gray-100 shadow-sm">

@@ -191,7 +191,7 @@ const App = () => {
 
     return (
         <AuthContext.Provider value={authValue}>
-            <Router future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>
+            <Router basename={import.meta.env.BASE_URL} future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>
                 <AppContent
                     cart={cart}
                     wishlist={wishlist}
