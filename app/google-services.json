@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "712353400797",
+    "firebase_url": "https://fast-shopping-76cff-default-rtdb.firebaseio.com",
+    "project_id": "fast-shopping-76cff",
+    "storage_bucket": "fast-shopping-76cff.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:712353400797:android:c96ecb4a06932b3fde1834",
+        "android_client_info": {
+          "package_name": "com.fastshopping"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "712353400797-3e7hnkha7k5pargkq6b45qacaff8pr6m.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.fastshopping",
+            "certificate_hash": "bc49898bb84b66127aec7a75e15e9e411cdbd2c5"
+          }
+        },
+        {
+          "client_id": "712353400797-b8lt5cuthbbkjj75opjg9lget7rs4jod.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBXi_IxbrDeKUVJzn3VtAd82e3IJRU21fE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "712353400797-b8lt5cuthbbkjj75opjg9lget7rs4jod.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Host theme for Fast Shopping (pure Jetpack Compose app) -->
+    <style name="Theme.FastShopping" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:statusBarColor">#FF6200EE</item>
+        <item name="android:navigationBarColor">#FFFFFFFF</item>
+        <item name="android:windowLightStatusBar">false</item>
+    </style>
+</resources>
